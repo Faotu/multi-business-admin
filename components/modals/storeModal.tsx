@@ -5,11 +5,19 @@ import { Modal } from "@/components/ui/modal";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 const formSchema = z.object({
-  name: z.string().min(1),
+  name: z.string().min(4),
 });
 
 export const StoreModal = () => {
@@ -22,7 +30,7 @@ export const StoreModal = () => {
     },
   });
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // Create a store code will be here
+    // Apend code to create users and modals in the future
   };
 
   return (
@@ -46,10 +54,18 @@ export const StoreModal = () => {
                       <FormControl>
                         <Input placeholder="multi-business" {...field} />
                       </FormControl>
+                      <FormMessage />
                     </FormLabel>
                   </FormItem>
                 )}
               />
+
+              <div className="pt-6 space-x-2 flex items-center justify-end w-full ">
+                <Button variant="destructive" onClick={storeModal.onClose}>
+                  Cancel
+                </Button>
+                <Button type="submit">Continue</Button>
+              </div>
             </form>
           </Form>
         </div>
